@@ -19,4 +19,20 @@ class TelemetryViewModel : ViewModel() {
     override fun onCleared() {
         source.stop()
     }
+
+
+    private val controller: FlightController = FakeFlightController()
+
+    private val _lastCommand = MutableLiveData("Last command: none")
+    val lastCommand: LiveData<String> = _lastCommand
+
+    fun send(command: StickCommand) {
+        controller.send(command)
+        _lastCommand.value = "Last command: $command"
+    }
+
+    fun emergencyStop() {
+        controller.emergencyStop()
+        _lastCommand.value = "EMERGENCY STOP"
+    }
 }

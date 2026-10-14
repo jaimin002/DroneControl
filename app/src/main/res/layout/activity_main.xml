@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/main"
     android:layout_width="match_parent"
@@ -9,8 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center"
-        android:padding="24dp">
+        android:gravity="center">
 
         <TextView
             android:id="@+id/altitudeText"
@@ -43,5 +42,54 @@
             android:text="State: --"
             android:textSize="28sp" />
 
+        <TextView
+            android:id="@+id/lastCommandText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Last command: none"
+            android:textSize="14sp" />
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+                <Button android:id="@+id/btnForward" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Fwd" />
+                <Button android:id="@+id/btnBack" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Back" />
+                <Button android:id="@+id/btnLeft" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Left" />
+                <Button android:id="@+id/btnRight" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Right" />
+            </LinearLayout>
+        </ScrollView>
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button android:id="@+id/btnUp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Up" />
+                <Button android:id="@+id/btnDown" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Down" />
+                <Button android:id="@+id/btnYawLeft" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Yaw L" />
+                <Button android:id="@+id/btnYawRight" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Yaw R" />
+            </LinearLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/btnEmergency"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_gravity="bottom"
+            android:layout_margin="16dp"
+            android:backgroundTint="#D32F2F"
+            android:text="EMERGENCY STOP"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
     </LinearLayout>
-</FrameLayout>
+</RelativeLayout>
