@@ -4,9 +4,37 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
+// imports at the top of the file
+import android.os.Handler
+import android.os.Looper
+import android.widget.TextView
 import androidx.core.view.WindowInsetsCompat
 
+
 class MainActivity : AppCompatActivity() {
+    // inside the class MainActivity, outside onCreate
+    private val handler = Handler(Looper.getMainLooper())
+    private var altitude = 0.0
+
+    private val updater = object : Runnable {
+        override fun run() {
+            altitude += 0.5
+            val fake = Telemetry(altitude, 3.2, 90, "Flying")
+            findViewById<TextView>(R.id.altitudeText).text = "Altitude: ${fake.altitude} m"
+            handler.postDelayed(this, 1000)
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        handler.post(updater)
+    }
+
+    override fun onStop() {
+        handler.removeCallbacks(updater)
+        super.onStop()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
