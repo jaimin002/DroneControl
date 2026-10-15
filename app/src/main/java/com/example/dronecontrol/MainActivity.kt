@@ -54,6 +54,21 @@ class MainActivity : AppCompatActivity() {
         viewModel.lastCommand.observe(this) {
             findViewById<TextView>(R.id.lastCommandText).text = it
         }
+
+        val controlIds = listOf(
+            R.id.btnForward, R.id.btnBack, R.id.btnLeft, R.id.btnRight,
+            R.id.btnUp, R.id.btnDown, R.id.btnYawLeft, R.id.btnYawRight
+        )
+
+        viewModel.stopped.observe(this) { stopped ->
+            controlIds.forEach { findViewById<Button>(it).isEnabled = !stopped }
+        }
+
+// Long-press the emergency button to re-enable. A single accidental tap won't.
+        findViewById<Button>(R.id.btnEmergency).setOnLongClickListener {
+            viewModel.resetStop()
+            true
+        }
     }
 
     private fun bindHold(buttonId: Int, command: StickCommand) {

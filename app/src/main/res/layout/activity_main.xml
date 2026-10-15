@@ -12,6 +12,16 @@
         android:gravity="center">
 
         <TextView
+            android:id="@+id/videoPlaceholder"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginBottom="16dp"
+            android:background="#222222"
+            android:gravity="center"
+            android:text="Video stream (no signal)"
+            android:textColor="#AAAAAA" />
+
+        <TextView
             android:id="@+id/altitudeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

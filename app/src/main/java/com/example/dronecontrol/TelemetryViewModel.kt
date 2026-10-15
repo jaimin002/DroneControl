@@ -26,13 +26,23 @@ class TelemetryViewModel : ViewModel() {
     private val _lastCommand = MutableLiveData("Last command: none")
     val lastCommand: LiveData<String> = _lastCommand
 
+    private val _stopped = MutableLiveData(false)
+    val stopped: LiveData<Boolean> = _stopped
+
     fun send(command: StickCommand) {
+        if (_stopped.value == true) return
         controller.send(command)
         _lastCommand.value = "Last command: $command"
     }
 
     fun emergencyStop() {
         controller.emergencyStop()
-        _lastCommand.value = "EMERGENCY STOP"
+        _stopped.value = true
+        _lastCommand.value = "EMERGENCY STOP - controls locked"
+    }
+
+    fun resetStop() {
+        _stopped.value = false
+        _lastCommand.value = "Controls re-enabled"
     }
 }
